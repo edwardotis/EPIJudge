@@ -9,7 +9,7 @@ import java.util.List;
 public class BuyAndSellStockTwice {
 
   @EpiTest(testDataFile = "buy_and_sell_stock_twice.tsv")
-  public static double buyAndSellStockTwice(List<Double> prices) {
+  public static double buyAndSellStockTwice_original(List<Double> prices) {
 
     double maxTotalProfit = 0.0;
     List<Double> firstBuySellProfits = new ArrayList<>();
@@ -44,6 +44,10 @@ public class BuyAndSellStockTwice {
                        Math.max(maxProfits.get(i), price - minPrices.get(i)));
         minPrices.set(
             i, Math.min(minPrices.get(i),
+                        // for i == 1 (why? why do the i-1>=0 here? It's 2 VALUES. 1 or 0. Don't obfuscate your code.)
+                        // by far the most confusing line. You're putting the cur price minus  value of maxProfit[0] into the minPrices[1] slot
+                        // if that's less than current min price of [1].  Sure. I'll figure that out in 30 minute interview no problem.
+                        //
                         price - (i - 1 >= 0 ? maxProfits.get(i - 1) : 0.0)));
       }
     }

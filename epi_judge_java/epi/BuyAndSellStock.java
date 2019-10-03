@@ -5,8 +5,15 @@ import java.util.List;
 public class BuyAndSellStock {
   @EpiTest(testDataFile = "buy_and_sell_stock.tsv")
   public static double computeMaxProfit(List<Double> prices) {
-    // TODO - you fill in here.
-    return 0.0;
+    double maxProfit = 0.0;
+    double curMin = Double.MAX_VALUE;
+    double curProfit = 0.0;
+    for(Double price : prices){
+      curMin = Math.min(curMin, price);
+      curProfit = price - curMin;
+      maxProfit = Math.max(curProfit, maxProfit);
+    }
+    return maxProfit;
   }
 
   public static void main(String[] args) {

@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * And really lame that EPI doesn't put variant solutions in here, or in the text book.
+ *  We're learning here. Put the damn solution or at least a solution description or hint somewhere
+ */
 public class DutchNationalFlag {
 
   public enum Color { RED, WHITE, BLUE }
