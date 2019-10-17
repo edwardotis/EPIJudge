@@ -3,6 +3,9 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.NoSuchElementException;
 public class StackWithMax {
@@ -23,6 +26,43 @@ public class StackWithMax {
     public void push(Integer x) {
       // TODO - you fill in here.
       return;
+    }
+
+    private static class MinMaxStack {
+
+      private Deque<Integer> stack = new ArrayDeque<>();
+      private Deque<Integer> minStack = new ArrayDeque<>();
+      private Deque<Integer> maxStack = new ArrayDeque<>();
+
+      public void push(Integer i){
+        if( i >= max() ){
+          maxStack.push(i);
+        }
+        // if( i.intValue() <= min() ){
+        //   minStack.push(i);
+        // }
+        stack.push(i);
+      }
+
+//     public Integer pop(){
+//       int resp = stack.pop();
+//       if(resp == max()){
+//         maxStack.pop();
+//       }
+//       if(resp == min()){
+//         minStack.pop();
+//       }
+//       return resp;
+//     }
+
+      public Integer min(){
+        return minStack.peek();
+      }
+
+      public Integer max(){
+        return maxStack.peek();
+      }
+
     }
   }
   @EpiUserType(ctorParams = {String.class, int.class})
