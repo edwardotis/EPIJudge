@@ -20,6 +20,7 @@ public class Anagrams {
                       .sorted()
                       .collect(Collectors.joining());
       Set<String> set = map.getOrDefault(sorted, new HashSet<>());
+
       set.add(s);
       map.putIfAbsent(sorted, set);
     }
