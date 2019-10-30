@@ -3,15 +3,34 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.EpiTestComparator;
 import epi.test_framework.LexicographicalListComparator;
 import epi.test_framework.GenericTest;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.*;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Anagrams {
   @EpiTest(testDataFile = "anagrams.tsv")
 
   public static List<List<String>> findAnagrams(List<String> dictionary) {
-    // TODO - you fill in here.
-    return null;
+    Map<String, Set<String>> map = new HashMap<>();
+    for(String s : dictionary){
+      String sorted =
+              Stream.of(s.split(""))
+                      .sorted()
+                      .collect(Collectors.joining());
+      Set<String> set = map.getOrDefault(sorted, new HashSet<>());
+      set.add(s);
+      map.putIfAbsent(sorted, set);
+    }
+    List<List<String>> resp = new ArrayList<>();
+    for(Map.Entry<String, Set<String>> entry : map.entrySet()) {
+      Set<String> anagrams = entry.getValue();
+      if(anagrams.size() > 1){
+        resp.add(new ArrayList<>(anagrams));
+      }
+    }
+    return resp;
   }
   @EpiTestComparator
   public static BiPredicate<List<List<String>>, List<List<String>>> comp =
