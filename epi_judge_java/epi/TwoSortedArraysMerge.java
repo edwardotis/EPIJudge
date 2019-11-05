@@ -3,6 +3,26 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import java.util.List;
 public class TwoSortedArraysMerge {
+  /**
+   merge 2 sorted arrays 13.2
+
+   Maybe rotate the first array to put values at end.
+   eh, but we don't no distance to rotate without counting to N. Which won't hurt the big O actually.
+   And another N to perform the rotate.
+   ok. break for dinner. and mom
+   ----
+   ok, what if we just start working from the empty end.
+   And then take O(m+n) to reverse it in separate pass
+   And it should be O(m+n)  to do first pass.
+   Oh, and do it in reverse, so no extra pass, plus it guarantees space will be available if
+   B array is all the highest numbers.
+   Space (1)
+
+   hmmm, looks like they pass the non-empty array sizes in the example. Well, the fucked up and
+   don't describe it in the problem. another bug.
+
+   Anyway, I think my way works without that info. Let's find out.
+   */
 
   public static void mergeTwoSortedArrays(List<Integer> A, int m,
                                           List<Integer> B, int n) {
