@@ -34,7 +34,7 @@ public class CalendarRendering {
   public static int findMaxSimultaneousEvents(List<Event> A) {
     /**
      *
-     O(n) n is # of events
+     O(nlgn) n is # of events, and we sorted them.
      Space (n) 2n  sorted events by start and end.
      Convert Event into start times and end times.
      2 ptrs
